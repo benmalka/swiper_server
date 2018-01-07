@@ -25,7 +25,7 @@ SECRET_KEY = '$_cx%u(xxzo)=ba0t5wpddb26l4j@rzuh%+z+jos@3tjs++^--'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
