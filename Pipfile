@@ -15,6 +15,7 @@ django = "==1.*"
 flask = "*"
 djangorestframework = "*"
 gunicorn = "*"
+pymongo = "*"
 
 
 [requires]
