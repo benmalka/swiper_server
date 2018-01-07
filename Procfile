@@ -1,1 +1,1 @@
-web: gunicorn swiper.wsgi --log-file -
+web: gunicorn swipper.wsgi --log-file
