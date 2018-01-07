@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,6 +26,8 @@ SECRET_KEY = '$_cx%u(xxzo)=ba0t5wpddb26l4j@rzuh%+z+jos@3tjs++^--'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get('DEBUG'), 10))
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+# DEBUG =True
+# ALLOWED_HOSTS =['*'] # os.environ.get('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -75,13 +78,25 @@ WSGI_APPLICATION = 'swipper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.environ.get('DB_ENGINE'),
+#         'NAME': os.environ.get('DATABASE_URL'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':'django.db.backends.postgresql_psycopg2' ,
+        'NAME': 'd33mhbb502bq1o',
+        'USER': 'jyazjmvlilqltm',
+        'PASSWORD' : '5fc210be02c68eec15555d6d2b4b556a02698b0b7f17fd1c9606c6b8dfa4cb4a',
+        'HOST': 'ec2-54-195-241-106.eu-west-1.compute.amazonaws.com',
+        'PORT' : '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators

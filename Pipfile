@@ -16,6 +16,7 @@ flask = "*"
 djangorestframework = "*"
 gunicorn = "*"
 pymongo = "*"
+"psycopg2" = "*"
 
 
 [requires]
