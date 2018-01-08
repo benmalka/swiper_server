@@ -14,6 +14,7 @@ from hot24.models import Categories, Items, Admins, Users, LikedItems
 from hot24.serializers import CategorySerializer, ItemSerializer, UsersSerializer, LikedItemsSerializer
 
 PAGINATION = 10
+EMPTY_DICT = {}
 
 
 def isUserExist(uname):
@@ -31,7 +32,7 @@ def users_list(request):
             serializer = UsersSerializer(user, many=False)
             res = Response(serializer.data)
         else:
-            res = Response(status=status.HTTP_400_BAD_REQUEST)
+            res = Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
 
         # users = Users.objects.all()
         #
@@ -44,8 +45,7 @@ def users_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(
-                serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -65,7 +65,7 @@ def items_list(request):
         items = Items.objects.all()
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data, status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -81,7 +81,7 @@ def get_items(request):
                     PI * PAGINATION:(PI + 1) * PAGINATION]
             serializer = ItemSerializer(data=items, many=True)
             return Response(serializer.data, status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -98,18 +98,14 @@ def category_list(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     if request.method == 'POST' and 'user_name' in request.data.keys() and 'data' in request.data.keys():
-        # user = Admins.object.get(user_name=request.data['user_name'])
         user = Users.objects.get(user_name=request.data['user_name'])
         data = request.data['data']
-        # if user and user['user_pass'] == hashlib(request.data['user_pass']):
-        #     del request.data['user_pass']
-        #     del request.data['user_name']
         if user and 'category_name' in data.keys():
             serializer = CategorySerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST', 'DELETE'])
@@ -132,11 +128,11 @@ def like_item(request):
         if user and item:
             try:
                 LikedItems.objects.get(user_id=user.user_id, item_id=item.item_id).delete()
-                return Response(status=status.HTTP_204_NO_CONTENT)
+                return Response(EMPTY_DICT, status=status.HTTP_204_NO_CONTENT)
             except Exception as e:
                 print e
                 pass
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])
@@ -151,4 +147,4 @@ def get_liked_item(request):
             for item in likeditems:
                 data['items'].append(Items.objects.get(item_id=item.item_id))
             return Response(data, status=status.HTTP_200_OK)
-    return Response(status=status.HTTP_400_BAD_REQUEST)
+    return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
