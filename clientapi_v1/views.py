@@ -10,8 +10,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from hot24.models import Categories, Items, Admins, Users, LikedItems
-from hot24.serializers import CategorySerializer, ItemSerializer, UsersSerializer, LikedItemsSerializer
+from models import Categories, Items, Admins, Users, LikedItems
+from serializers import CategorySerializer, ItemSerializer, UsersSerializer, LikedItemsSerializer
 
 PAGINATION = 10
 EMPTY_DICT = {}

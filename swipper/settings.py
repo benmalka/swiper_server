@@ -34,7 +34,7 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 INSTALLED_APPS = [
     'rest_framework',
-    'hot24',
+    'clientapi_v1',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

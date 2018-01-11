@@ -20,5 +20,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hot24/', include('hot24.urls')),
+    url(r'^clientapi_v1/', include('clientapi_v1.urls')),
 ]
