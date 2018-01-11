@@ -48,6 +48,12 @@ def users_list(request):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST'])
+def add_user(request):
+    # TODO:
+    return Response(EMPTY_DICT, status=status.HTTP_200_OK)
+
+
 @api_view(['GET', 'POST'])
 def items_list(request):
     if request.method == 'Post' and 'user_name' in request.data.keys():
@@ -136,7 +142,7 @@ def like_item(request):
 
 
 @api_view(['POST'])
-def get_liked_item(request):
+def get_liked_items(request):
     if request.method == 'POST' and 'user_name' in request.data.keys() and 'data' in request.data.keys():
         user = Users.objects.get(user_name=request.data['user_name'])
         if user:
@@ -148,3 +154,9 @@ def get_liked_item(request):
                 data['items'].append(Items.objects.get(item_id=item.item_id))
             return Response(data, status=status.HTTP_200_OK)
     return Response(EMPTY_DICT, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def delete_liked_item(request):
+    # TODO:
+    return Response(EMPTY_DICT, status=status.HTTP_200_OK)
