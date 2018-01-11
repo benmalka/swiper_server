@@ -18,7 +18,7 @@
 ### `add user`
 Insert user to DB, if exist update user
 
-  * URL: client_v1/add_user
+  * URL: clientapi_v1/add_user
   * Method: POST
   * Type: JSON
   * Data: {“userName”: type.str, “userID” : type.str, “userEmail”: type.str}
@@ -28,7 +28,7 @@ Insert user to DB, if exist update user
 ### `get items`
 Get items from DB
 
-  * URL: client_v1/get_items
+  * URL: clientapi_v1/get_items
   * Method: POST
   * Type: JSON
   * Data: {“userID”: type.str, “maxPrice”: type.int, “page” : type.int}
@@ -37,7 +37,7 @@ Get items from DB
 ### `like item`
 Insert item ID to users “like items” DB (it will be saved only from 24 hours)
 
-  * URL: client_v1/like_item
+  * URL: clientapi_v1/like_item
   * Method: POST
   * Type: JSON
   * Data: {“userID”: type.str, “itemID” :type.str}
@@ -46,7 +46,7 @@ Insert item ID to users “like items” DB (it will be saved only from 24 hours
 ### `get liked items`
 Get liked itemed from user “liked items” DB
 
-  * URL: client_v1/get_liked_items
+  * URL: clientapi_v1/get_liked_items
   * Method: POST
   * Type: JSON
   * Data: {“userID”: type.str, “page”: type.int}
@@ -55,7 +55,7 @@ Get liked itemed from user “liked items” DB
 ### `delete liked item `
 Remove item ID from user’s “like items” DB
 
-  * URL: client_v1/delete_liked_item
+  * URL: clientapi_v1/delete_liked_item
   * Method: POST
   * Type: JSON
   * Data: {“userID”: type.str, “itemID”: type.str}
