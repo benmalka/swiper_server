@@ -21,7 +21,12 @@ Insert user to DB, if exist update user
   * URL: clientapi_v1/add_user
   * Method: POST
   * Type: JSON
-  * Data: {“userName”: type.str, “userID” : type.str, “userEmail”: type.str}
+  * Data: {“user_name”: type.str,
+           “user_id” : type.str,
+           “user_email”: type.str,
+           "user_first_name: type.str,
+           "user_last_name: type.str,
+           "user_gender": type.str}
   * Returns: {“output”: “success/failed”}
 
 
