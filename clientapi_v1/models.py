@@ -4,8 +4,8 @@ from django.db import models
 # Create your models here.
 
 class Users(models.Model):
-    user_id = models.AutoField(primary_key=True)
-    user_name = models.CharField(max_length=15,null=False,unique=True)
+    user_id = models.CharField(max_length=17, primary_key=True, unique=True)
+    user_name = models.CharField(max_length=15, null=False, unique=True)
     user_email = models.EmailField(null=False,unique=True)
     user_creation_dt = models.DateTimeField(auto_now_add=True)
     user_modify_dt = models.DateTimeField(null=True)
