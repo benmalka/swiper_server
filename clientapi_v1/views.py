@@ -15,7 +15,8 @@ from serializers import CategorySerializer, ItemSerializer, UsersSerializer, Lik
 
 PAGINATION = 10
 EMPTY_DICT = {}
-
+SUCCESS = 100
+FAILURE = 400
 
 def isUserExist(uname):
     return Users.objects.get(user_name=uname) != None
@@ -50,7 +51,13 @@ def users_list(request):
 
 @api_view(['POST'])
 def add_user(request):
-    # TODO:
+    if request.method == 'POST':
+        serializer = UsersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'rc': SUCCESS}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'rc': FAILURE}, status=status.HTTP_400_BAD_REQUEST)
     return Response(EMPTY_DICT, status=status.HTTP_200_OK)
 
 
