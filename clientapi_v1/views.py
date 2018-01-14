@@ -51,6 +51,7 @@ def users_list(request):
 
 @api_view(['POST'])
 def add_user(request):
+    # TODO: Handle issue with existing user.
     if request.method == 'POST':
         serializer = UsersSerializer(data=request.data)
         if serializer.is_valid():
